@@ -19,11 +19,13 @@ export const Sidebar = () => {
       label: 'Notifications',
       href: '/notifications',
       icon: BsBellFill,
+      auth: true,
     },
     {
       label: 'Profile',
       href: '/profile/123',
       icon: FaUser,
+      auth: true,
     }
   ];
 
