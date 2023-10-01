@@ -2,6 +2,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Layout } from './components/Layout'
+import { Toaster } from 'react-hot-toast'
+import { getServerSession } from 'next-auth'
+import { SessionProvider } from './context/SessionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,12 +17,17 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-export default function RootLayout(props: LayoutProps) {
+export default async function RootLayout(props: LayoutProps) {
+  const session = await getServerSession();
+
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Layout />
-      </body>
+      <SessionProvider session={session}>
+        <body className={inter.className}>
+          <Toaster />
+          <Layout />
+        </body>
+      </SessionProvider>
     </html>
   )
 }
