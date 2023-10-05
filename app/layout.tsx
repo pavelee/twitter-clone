@@ -25,7 +25,9 @@ export default async function RootLayout(props: LayoutProps) {
       <SessionProvider session={session}>
         <body className={inter.className}>
           <Toaster />
-          <Layout />
+          <Layout>
+            {props.children}
+          </Layout>
         </body>
       </SessionProvider>
     </html>
